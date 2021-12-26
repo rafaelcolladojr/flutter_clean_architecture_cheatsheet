@@ -31,7 +31,7 @@
 ### core/error
 ##### To be implemented by all Failure types; returned by usecases.
 ##### `failure.dart`
-```
+```dart
 abstract class Failure extends Equatable {
   const Failure();
 }
@@ -57,7 +57,7 @@ class CacheFailure implements Failure {
 ### data/datasource
 ##### To be implemented by all usecases and excepted by repositories
 ##### `local_datasource.dart`
-```
+```dart
 iabstract class LocalTDatasource {
   Future<T> getProperty(String arg);
   Future<void> cacheT(T modelToCache);
@@ -77,7 +77,7 @@ class LocalTDatasourceImpl implements LocalTDatasource {
 ```
 ##### The following example utilizes the `http` package to use a RestAPI as a remote datasource
 ##### `remote_datasource.dart`
-```
+```dart
 abstract class RemoteTDataSource {
   Future<T> getProperty(String arg);
 }
@@ -104,7 +104,7 @@ class RemoteTDataSourceImpl implements RemoteTDataSource {
 ### data/model
 ##### Template to be used by any models (replace T with the actual model name)
 ##### `t_model.dart`
-```
+```dart
 T tFromJson(String str) => T.fromJson(json.decode(str));
 
 class T extends Equatable {
@@ -135,7 +135,7 @@ class T extends Equatable {
 ### data/repository
 ##### To implement Repository abstract class from domain layer
 ##### `t_repository_impl.dart`
-```
+```dart
 class RepositoryImpl implements Repository {
     // Include datasources as properties
     // Include any network checking APIs if applicable
@@ -145,7 +145,7 @@ class RepositoryImpl implements Repository {
 ### domain/repository
 ##### To be implemented by Repository classes in data layer
 ##### `t_repository.dart`
-```
+```dart
 abstract class Repository {
   Future<Either<Failure, T>> getProperty(String arg);
 }
@@ -154,7 +154,7 @@ abstract class Repository {
 ### domain/entity
 ##### Identical to its data-layer model counterpart
 ##### `t_entity.dart`
-```
+```dart
 class TEntity {
   TEntity({
     required this.prop,
@@ -171,7 +171,7 @@ class TEntity {
 ### domain/usecase
 ##### To be implemented by Usecase classes
 ##### `usecase.dart`
-```
+```dart
 abstract class UseCase<Type, Params> {
   Future<Either<Failure, Type>> call(Params params);
 }
@@ -180,7 +180,7 @@ abstract class UseCase<Type, Params> {
 ### presentation/bloc
 ##### Bloc component files to be exported in `bloc.dart` barrel file.
 ##### `t_event.dart`
-```
+```dart
 abstract class TEvent {}
 
 class GetPropertyEvent extends TEvent {
@@ -190,7 +190,7 @@ class GetPropertyEvent extends TEvent {
 }
 ```
 ##### `t_state.dart`
-```
+```dart
 enum TStatus { initial, loading, success, failure }
 
 extension TStatusEx on TStatus {
@@ -225,7 +225,7 @@ class TState extends Equatable {
 
 ```
 ##### `t_bloc.dart`
-```
+```dart
 class TBloc extends Bloc<TEvent, TState> {
   final TRepository tRepository;
 
