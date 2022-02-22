@@ -1,11 +1,10 @@
 
 # Flutter Clean Architecture Cheatsheet
 
-### The following document serves as a guideline to starting and "bootstrapping" any Flutter project employing the Clean Architecture folder/file structure.
+#### The following document serves as a guideline to starting and "bootstrapping" any Flutter project employing the Clean Architecture folder/file structure.
 
 
 ## Folder Struture
-##### Funny enough, the folder's structure logical order is also alphabetical. :p
 ###### (Feel free to move your state management system [I chose bloc] to your most preferred folder/location)
 
 
@@ -58,7 +57,7 @@ class CacheFailure implements Failure {
 ##### To be implemented by all usecases and excepted by repositories
 ##### `local_datasource.dart`
 ```dart
-iabstract class LocalTDatasource {
+abstract class LocalTDatasource {
   Future<T> getProperty(String arg);
   Future<void> cacheT(T modelToCache);
 }
